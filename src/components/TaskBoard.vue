@@ -85,7 +85,7 @@ export default {
 @import '@/assets/styles/variables';
 
 .task-board {
-  margin-top: 60px;
+  margin-top: 200px;
   &__columns {
     display: flex;
     justify-content: space-around;

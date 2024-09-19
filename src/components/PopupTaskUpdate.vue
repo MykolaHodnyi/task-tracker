@@ -2,7 +2,7 @@
   <teleport to="body">
     <div v-if="isVisible" @click.self="closePopup" class="popup">
       <div class="popup__wrapper">
-        <add-task :status-id="data" @task-created="closePopup"></add-task>
+        <update-task :taskId="taskId" @task-updated="closePopup" @task-deleted="closePopup"></update-task>
 
         <button @click.stop="closePopup" class="popup__btn btn btn-close">Close</button>
       </div>
@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import AddTask from '@/components/AddTask.vue'
+import UpdateTask from '@/components/UpdateTask.vue'
 
 export default {
   name: 'PopupTaskCreate',
-  components: { AddTask },
+  components: { UpdateTask },
   emits: ['close'],
   props: {
     isVisible: {
       type: Boolean,
       required: true
     },
-    data: {
+    taskId: {
       type: Number,
       required: true
     }

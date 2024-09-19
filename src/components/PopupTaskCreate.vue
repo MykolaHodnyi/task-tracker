@@ -1,11 +1,9 @@
 <template>
   <teleport to="body">
-    <div v-if="isVisible" @click.self="closePopup">
+    <div v-if="isVisible" @click.self="closePopup" class="popup">
       <div class="popup__wrapper">
         <add-task :status-id="data"></add-task>
-        <button @click.stop="closePopup" class="popup__btn">
-          Close
-        </button>
+        <button @click.stop="closePopup" class="popup__btn btn btn-close">Close</button>
       </div>
     </div>
   </teleport>
@@ -47,10 +45,12 @@ export default {
 <style lang="scss">
 .popup {
   &__wrapper {
+    padding: 24px;
     position: absolute;
-    height: 500px;
-    width: 400px;
     border: 1px solid black;
+  }
+  &__btn {
+    margin-top: 8px;
   }
 }
 </style>

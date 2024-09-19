@@ -1,24 +1,24 @@
 <template>
   <div class="add-task">
-    <h2>Add New Task</h2>
-    <form @submit.prevent="submitTask">
-      <div>
+    <h3 class="add-task__title">Add New Task</h3>
+    <form class="add-task__form" @submit.prevent="submitTask">
+      <div class="add-task__input-group">
         <label for="title">Title:</label>
-        <input v-model="title" type="text" id="title" required />
+        <input class="input input-text" v-model="title" type="text" id="title" placeholder="Title" required />
       </div>
-      <div>
+      <div class="add-task__input-group">
         <label for="description">Description:</label>
-        <textarea v-model="description" id="description" required></textarea>
+        <textarea class="input input-text" v-model="description" id="description" placeholder="Description" required></textarea>
       </div>
-      <div>
+      <div class="add-task__input-group">
         <label for="assignee">Assignee:</label>
-        <input v-model="assignee" type="text" id="assignee" required />
+        <input class="input input-text" v-model="assignee" type="text" id="assignee" placeholder="Assignee" required />
       </div>
-      <div>
+      <div class="add-task__input-group">
         <label for="performers">Performers (comma separated):</label>
-        <input v-model="performers" type="text" id="performers" />
+        <input class="input input-text" v-model="performers" type="text" id="performers" placeholder="Performers" />
       </div>
-      <div>
+      <div class="add-task__input-group">
         <label for="priority">Priority:</label>
         <select v-model="priority" id="priority">
           <option value="High">High</option>
@@ -26,13 +26,12 @@
           <option value="Low">Low</option>
         </select>
       </div>
-      <div>
+      <div class="add-task__input-group">
         <label for="deadline">Deadline:</label>
-        <input v-model="deadline" type="date" id="deadline"/>
+        <input class="input-text" v-model="deadline" type="date" id="deadline"/>
       </div>
-      <button type="submit">Add Task</button>
+      <button type="submit" class="btn">Add Task</button>
     </form>
-    <h2>{{statusId}}</h2>
   </div>
 </template>
 
@@ -81,5 +80,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.add-task {
+  &__form {
+    width: 450px;
+  }
+  &__input-group {
+    display: flex;
+    flex-direction: column;
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+}
 </style>

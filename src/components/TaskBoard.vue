@@ -1,28 +1,28 @@
 <template>
-  <div class="task-board">
-    <div class="columns">
-      <div class="task-column"
+  <div class="main task-board">
+    <div class="task-board__columns">
+      <div class="task-board__column"
            v-for="status in statuses" :key="status.id"
            @drop="onDrop($event, status.id)"
            @dragover.prevent
            @dragenter.prevent
       >
-        <h3>{{ status.title }}</h3>
-        <div v-for="task in getTasksByStatus(status.id)"
-             :key="task.id"
-             @dragstart="onDragStart($event, task)"
-             class="task-card"
-             draggable="true"
-        >
-          <h4>{{ task.title }}</h4>
-          <p>{{ task.description }}</p>
-          <p><strong>Assignee:</strong> {{ task.assignee }}</p>
-          <p><strong>Performers:</strong> {{ task.performers.join(', ') }}</p>
-          <p><strong>Priority:</strong> {{ task.priority }}</p>
-          <button @click="editTask(task)">Edit</button>
-          <button @click="deleteTask(task.id)">Delete</button>
+        <h3 class="task-board__column-title">{{ status.title }}</h3>
+        <div class="cards-container">
+          <div v-for="task in getTasksByStatus(status.id)"
+               :key="task.id"
+               @dragstart="onDragStart($event, task)"
+               class="task-board__card"
+               draggable="true"
+               @click="editTask"
+          >
+            <h4 class="task-board__card-title">{{ task.title }}</h4>
+            <p class="task-board__card-priority"><strong>Priority:</strong> {{ task.priority }}</p>
+  <!--          <button @click="editTask(task)">Edit</button>-->
+  <!--          <button @click="deleteTask(task.id)">Delete</button>-->
+          </div>
         </div>
-        <button class="btn-add" @click="isVisiblePopup = true; statusId = status.id">+</button>
+        <button class="btn btn-add task-board__column-btn" @click="isVisiblePopup = true; statusId = status.id">Add Task</button>
       </div>
     </div>
   </div>
@@ -61,35 +61,42 @@ export default {
     },
     closePopup() {
       this.isVisiblePopup = false
-    }
+    },
+    editTask() {}
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '@/assets/styles/variables';
+
 .task-board {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+  margin-top: 60px;
+  &__columns {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__column {
+    width: 30%;
+    padding: 10px;
+    background-color: $secondary-light-grayish-red-color;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+  }
+  &__card {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid $primary-dark-gray-color;
+    border-radius: 4px;
+    &-title {}
+    &-priority {}
+  }
 }
-.task-column {
-  width: 30%;
-  background-color: #f3f3f3;
-  padding: 10px;
-  border-radius: 8px;
-}
-.columns {
-  display: flex;
-  justify-content: space-between;
-}
-.task-card {
-  background-color: white;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-.btn-add {
-  background-color: green;
+
+.cards-container {
+  flex: 1 1 auto;
 }
 </style>

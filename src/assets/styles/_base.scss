@@ -1,0 +1,58 @@
+.input, input {
+  border: 1px solid $primary-input-border-color;
+  background-color: $primary-input-bgc-color;
+  border-radius: $primary-input-border-radius;
+  color: $primary-input-txt-color;
+
+  &::placeholder {
+    color: $primary-input-placeholder-txt-color;
+  }
+
+  &:focus {
+    border-color: $primary-input-focus-border-color;
+    color: $primary-input-focus-txt-color;
+    outline: none;
+    box-shadow: 0 0 0 1px $primary-input-focus-border-color;
+  }
+}
+
+.input {
+  &-text {
+    padding: 14px;
+  }
+}
+
+.label {
+  display: inline;
+}
+
+.label, label {
+  position: relative;
+  font-size: 14px;
+}
+
+textarea {
+  box-sizing: border-box;
+  border: 1px solid $secondary-alice-blue-color;
+  border-radius: $primary-input-border-radius;
+  background-color: $secondary-alice-blue-color;
+  max-width: 450px;
+  max-height: 150px;
+  min-width: 450px;
+  min-height: 50px;
+}
+
+select {
+  box-sizing: border-box;
+  padding: 14px;
+
+  border: 1px solid $secondary-alice-blue-color;
+  background-color: $secondary-alice-blue-color;
+  border-radius: 12px;
+  color: $primary-input-placeholder-txt-color;
+  appearance: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -4,20 +4,46 @@
     <form class="add-task__form" @submit.prevent="submitTask">
       <div class="add-task__input-group">
         <label for="title">Title:</label>
-        <input class="input input-text" v-model="title" type="text" id="title" placeholder="Title" required />
+        <input class="input input-text"
+               v-model="title"
+               type="text"
+               id="title"
+               placeholder="Title"
+               required
+        />
       </div>
+
       <div class="add-task__input-group">
         <label for="description">Description:</label>
-        <textarea class="input input-text" v-model="description" id="description" placeholder="Description" required></textarea>
+        <textarea class="input input-text"
+                  v-model="description"
+                  id="description"
+                  placeholder="Description"
+                  required
+        ></textarea>
       </div>
+
       <div class="add-task__input-group">
         <label for="assignee">Assignee:</label>
-        <input class="input input-text" v-model="assignee" type="text" id="assignee" placeholder="Assignee" required />
+        <input class="input input-text"
+               v-model="assignee"
+               type="text"
+               id="assignee"
+               placeholder="Assignee"
+               required
+        />
       </div>
+
       <div class="add-task__input-group">
         <label for="performers">Performers (comma separated):</label>
-        <input class="input input-text" v-model="performers" type="text" id="performers" placeholder="Performers" />
+        <input class="input input-text"
+               v-model="performers"
+               type="text"
+               id="performers"
+               placeholder="Performers"
+        />
       </div>
+
       <div class="add-task__input-group">
         <label for="priority">Priority:</label>
         <select v-model="priority" id="priority">
@@ -26,9 +52,14 @@
           <option value="Low">Low</option>
         </select>
       </div>
+
       <div class="add-task__input-group">
         <label for="deadline">Deadline:</label>
-        <input class="input-text" v-model="deadline" type="date" id="deadline"/>
+        <input class="input-text"
+               v-model="deadline"
+               type="date"
+               id="deadline"
+        />
       </div>
       <button type="submit" class="btn">Add Task</button>
     </form>
@@ -53,6 +84,7 @@ export default {
   props: {
     statusId: Number
   },
+  emits: ['task-created'],
   methods: {
     ...mapActions(['addTask']),
     submitTask () {
@@ -66,15 +98,7 @@ export default {
         deadline: this.deadline
       }
       this.addTask(newTask)
-      this.clearForm()
-    },
-    clearForm () {
-      this.title = ''
-      this.description = ''
-      this.assignee = ''
-      this.performers = ''
-      this.priority = 'High'
-      this.deadline = ''
+      this.$emit('task-created')
     }
   }
 }
